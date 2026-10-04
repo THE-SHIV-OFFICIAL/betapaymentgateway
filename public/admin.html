@@ -1,0 +1,14 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/><link rel="stylesheet" href="/styles.css"/><title>Owner panel – BETA BOT HUB</title><meta name="robots" content="noindex"/></head><body>
+<nav class="nav"><div class="wrap"><a class="logo" href="/"><i>β</i><span data-brand>BETA BOT HUB</span></a><div class="links" id="navlinks"><a class="hide-m" href="/#features">Features</a><a class="hide-m" href="/#docs">API Docs</a><a class="hide-m" href="https://t.me/betabot_support" target="_blank" rel="noopener">Support</a><a class="btn sm" href="/dashboard">Dashboard</a></div></div></nav>
+<main class="wrap">
+ <div id="aLogin" class="auth card glow"><h3>Owner panel</h3><form id="f-admin"><label>Admin password</label><input name="password" type="password" required/><button class="btn" style="width:100%;margin-top:18px">Enter</button></form><div class="msg" id="aMsg"></div></div>
+ <div id="aApp" class="hidden" style="padding:30px 0 60px">
+  <div class="row" style="justify-content:space-between;margin-bottom:18px"><h2>Owner panel</h2><div class="row"><span id="imapState"></span><span id="cleanState" style="color:var(--muted);font-size:12px"></span><button class="btn ghost sm" id="aClean">Email &amp; clean old history</button><button class="btn ghost sm" id="aRefresh">Refresh</button></div></div>
+  <div class="grid g4" id="aStats"></div>
+  <div class="card" style="margin-top:18px"><h3>Withdrawal requests</h3><div class="tbl"><table><thead><tr><th>Store</th><th>UPI</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody id="aPayouts"></tbody></table></div></div>
+  <div class="card" style="margin-top:18px"><h3>Accounts</h3><div class="tbl"><table><thead><tr><th>Store</th><th>Email</th><th>Received</th><th>Balance</th><th>Status</th><th></th></tr></thead><tbody id="aUsers"></tbody></table></div></div>
+  <div class="card" style="margin-top:18px"><h3>Latest orders</h3><div class="tbl"><table><thead><tr><th>Order</th><th>Store</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody id="aOrders"></tbody></table></div></div>
+ </div>
+</main>
+<footer><div class="wrap"><div>© <span id="yr"></span> <b data-brand>BETA BOT HUB</b> · Built by <b>THE SHIV</b></div><div class="row"><a href="https://t.me/betabot_support" target="_blank" rel="noopener">Group @betabot_support</a><a href="https://t.me/betabot_hub" target="_blank" rel="noopener">Channel @betabot_hub</a><a href="https://t.me/sukoon_s" target="_blank" rel="noopener">Owner @sukoon_s</a></div></div></footer><div class="toast" id="toast"></div>
+<script src="/common.js"></script><script src="/admin.js"></script></body></html>

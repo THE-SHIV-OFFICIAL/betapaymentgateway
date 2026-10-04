@@ -1,0 +1,20 @@
+services:
+  betabothub:
+    build: .
+    container_name: betabothub_pay
+    ports:
+      - "4000:4000"
+    env_file: .env
+    environment:
+      - MONGODB_URI=${MONGODB_URI:-mongodb://mongo:27017}
+    depends_on:
+      - mongo
+    restart: always
+  mongo:
+    image: mongo:7
+    container_name: betabothub_mongo
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+volumes:
+  mongo_data:

@@ -1,0 +1,23 @@
+{
+  "name": "beta-bot-hub-pay",
+  "version": "2.1.0",
+  "description": "BETA BOT HUB - FamPay UPI payment gateway with automatic Gmail verification",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "author": "THE SHIV",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "imapflow": "^1.0.164",
+    "nodemailer": "^6.9.14",
+    "mongodb": "^6.10.0"
+  }
+}

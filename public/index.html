@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/><link rel="stylesheet" href="/styles.css"/><title>BETA BOT HUB – UPI Payment Gateway with Auto Verification</title><meta name="description" content="Accept UPI payments on your website or bot. Payments are verified automatically and every payment is emailed to you."/></head><body>
+<nav class="nav"><div class="wrap"><a class="logo" href="/"><i>β</i><span data-brand>BETA BOT HUB</span></a><div class="links" id="navlinks"><a class="hide-m" href="/#features">Features</a><a class="hide-m" href="/#docs">API Docs</a><a class="hide-m" href="https://t.me/betabot_support" target="_blank" rel="noopener">Support</a><a class="btn sm" href="/dashboard">Dashboard</a></div></div></nav>
+<header class="hero wrap">
+  <span class="pill"><b></b> Live · Auto-verified UPI payments</span>
+  <h1>Accept UPI payments <span class="shine-text">without a payment gateway</span></h1>
+  <p>Create an account with just your email and password, get your API key, and start collecting payments. Every payment is verified automatically and sent to your inbox.</p>
+  <div class="cta"><a class="btn" href="/dashboard">Create free account</a><a class="btn ghost" href="#docs">Read API docs</a></div>
+</header>
+<section id="features"><div class="wrap">
+  <div class="sec-title"><h2>Everything you need</h2><p>Simple for you, simple for your customers.</p></div>
+  <div class="grid g3">
+    <div class="card"><div class="ico">⚡</div><h3>Instant QR</h3><p>Every order gets its own UPI QR and pay link. Works with FamPay, PhonePe, GPay, Paytm and all UPI apps.</p></div>
+    <div class="card"><div class="ico">🛡️</div><h3>Auto verification</h3><p>Payments are checked automatically every few seconds. No screenshots, no manual checking.</p></div>
+    <div class="card"><div class="ico">📩</div><h3>Email alerts</h3><p>You get an email for every payment with amount, order ID and your earning. Customers get a receipt too.</p></div>
+    <div class="card"><div class="ico">🤖</div><h3>Bots & websites</h3><p>Simple API for Telegram bots, stores and apps. Optional webhook when an order is paid.</p></div>
+    <div class="card"><div class="ico">💸</div><h3>Easy withdrawals</h3><p>See your balance in the dashboard and request a withdrawal to your UPI ID any time.</p></div>
+    <div class="card glow"><div class="ico">💎</div><h3>Only <span id="commission">4</span>% fee</h3><p>No setup cost, no monthly fee. A small fee only on successful payments.</p></div>
+  </div>
+</div></section>
+<section id="docs"><div class="wrap">
+  <div class="sec-title"><h2>API in 2 steps</h2><p>Use your API key from the dashboard.</p></div>
+  <div class="card">
+  <h3>1. Create a payment</h3>
+<pre>POST /api/v1/payments/create
+Authorization: Bearer YOUR_API_KEY
+Content-Type: application/json
+
+{ "amount": 99, "customerEmail": "buyer@gmail.com", "note": "Premium plan" }</pre>
+  <p>Response contains <code>orderId</code>, <code>payAmount</code> (amount with a few paise added so the payment can be matched), <code>qrImageUrl</code>, <code>upiUri</code> and <code>payUrl</code> (a ready checkout page you can send to the customer).</p>
+  <h3 style="margin-top:22px">2. Check status</h3>
+<pre>GET /api/v1/payments/ORDER_ID
+Authorization: Bearer YOUR_API_KEY
+
+→ { "verified": true, "order": { "status": "PAID", ... } }</pre>
+  <p>Status is <code>PENDING</code>, <code>PAID</code> or <code>EXPIRED</code>. Optionally add a webhook URL in Settings to receive <code>payment.paid</code> events.</p>
+  </div>
+</div></section>
+<footer><div class="wrap"><div>© <span id="yr"></span> <b data-brand>BETA BOT HUB</b> · Built by <b>THE SHIV</b></div><div class="row"><a href="https://t.me/betabot_support" target="_blank" rel="noopener">Group @betabot_support</a><a href="https://t.me/betabot_hub" target="_blank" rel="noopener">Channel @betabot_hub</a><a href="https://t.me/sukoon_s" target="_blank" rel="noopener">Owner @sukoon_s</a></div></div></footer><div class="toast" id="toast"></div>
+<script src="/common.js"></script></body></html>

@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"/><link rel="stylesheet" href="/styles.css"/><title>Dashboard – BETA BOT HUB</title></head><body>
+<nav class="nav"><div class="wrap"><a class="logo" href="/"><i>β</i><span data-brand>BETA BOT HUB</span></a><div class="links" id="navlinks"><a class="hide-m" href="/#features">Features</a><a class="hide-m" href="/#docs">API Docs</a><a class="hide-m" href="https://t.me/betabot_support" target="_blank" rel="noopener">Support</a><a class="btn sm" href="/dashboard">Dashboard</a></div></div></nav>
+<main class="wrap">
+ <div id="authBox" class="auth card glow hidden">
+  <div class="tabs"><button data-t="login" class="on">Log in</button><button data-t="signup">Sign up</button><button data-t="forgot">Forgot</button></div>
+  <form id="f-login"><label>Email</label><input name="email" type="email" required autocomplete="email"/><label>Password</label><input name="password" type="password" required autocomplete="current-password"/><button class="btn" style="width:100%;margin-top:20px">Log in</button></form>
+  <form id="f-signup" class="hidden"><label>Your name</label><input name="name" required maxlength="80"/><label>Store / bot name</label><input name="storeName" maxlength="80"/><label>Email (payment alerts come here)</label><input name="email" type="email" required/><label>Create password</label><input name="password" type="password" minlength="6" required autocomplete="new-password"/><label>Payout UPI ID (optional)</label><input name="payoutUpi" placeholder="yourname@fam"/><button class="btn" style="width:100%;margin-top:20px">Create account</button></form>
+  <form id="f-forgot" class="hidden"><label>Email</label><input name="email" type="email" required/><button type="button" id="sendCode" class="btn ghost" style="width:100%;margin-top:14px">Send reset code</button><label>Code from email</label><input name="code" inputmode="numeric"/><label>New password</label><input name="password" type="password" minlength="6"/><button class="btn" style="width:100%;margin-top:20px">Change password</button></form>
+  <div class="msg" id="authMsg"></div>
+ </div>
+ <div id="app" class="dash hidden">
+  <aside class="side">
+   <button data-p="overview" class="on">Overview</button><button data-p="orders">Payments</button><button data-p="test">Test payment</button><button data-p="api">API key</button><button data-p="payouts">Withdraw</button><button data-p="settings">Settings</button><button id="logout">Log out</button>
+  </aside>
+  <div>
+   <div class="panel on" id="p-overview">
+    <h2 style="margin-bottom:6px">Hi, <span id="uName"></span> 👋</h2><p style="color:var(--muted);margin-bottom:22px" id="uStore"></p>
+    <div class="grid g4">
+     <div class="card stat"><div class="k">Balance</div><div class="v gold" id="s-balance">₹0</div></div>
+     <div class="card stat"><div class="k">Total received</div><div class="v cyan" id="s-volume">₹0</div></div>
+     <div class="card stat"><div class="k">Paid orders</div><div class="v green" id="s-paid">0</div></div>
+     <div class="card stat"><div class="k">Withdrawn</div><div class="v" id="s-out">₹0</div></div>
+    </div>
+    <div class="card" style="margin-top:18px"><h3>Recent payments</h3><div class="tbl"><table><thead><tr><th>Order</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="recent"></tbody></table></div></div>
+   </div>
+   <div class="panel" id="p-orders"><div class="card"><div class="row" style="justify-content:space-between"><h3>All payments</h3><button class="btn ghost sm" id="refresh">Refresh</button></div><div class="tbl"><table><thead><tr><th>Order</th><th>Amount</th><th>Your earning</th><th>Customer</th><th>Status</th><th>Date</th></tr></thead><tbody id="allOrders"></tbody></table></div></div></div>
+   <div class="panel" id="p-test"><div class="grid g3">
+    <div class="card"><h3>Create a test payment</h3><p>Makes a real order and QR, the same way your API would.</p>
+     <form id="f-test"><label>Amount (₹)</label><input name="amount" type="number" min="1" step="1" value="1" required/><label>Customer email (optional)</label><input name="customerEmail" type="email"/><label>Note</label><input name="note" maxlength="120" placeholder="Test order"/><button class="btn" style="margin-top:18px">Generate QR</button></form><div class="msg" id="testMsg"></div></div>
+    <div class="card" id="testOut" style="text-align:center"><p>Your QR will appear here.</p></div>
+   </div></div>
+   <div class="panel" id="p-api"><div class="card glow"><h3>Your API key</h3><p>Keep this secret. Use it only on your server or bot.</p><div class="row" style="margin-top:14px"><div class="key" id="apiKey"></div><button class="btn sm" id="copyKey">Copy</button><button class="btn danger sm" id="rotate">New key</button></div>
+    <h3 style="margin-top:26px">Quick example (Node.js)</h3><pre id="snippet"></pre><p>Full docs on the <a href="/#docs">home page</a>.</p></div></div>
+   <div class="panel" id="p-payouts"><div class="grid g3">
+    <div class="card"><h3>Withdraw balance</h3><p>Available: <b id="w-bal" style="color:var(--gold)">₹0</b><br/>Sent to: <b id="w-upi"></b></p><form id="f-payout"><label>Amount (₹)</label><input name="amount" type="number" min="1" step="0.01" required/><button class="btn" style="margin-top:18px">Request withdrawal</button></form><div class="msg" id="payMsg"></div></div>
+    <div class="card"><h3>History</h3><div class="tbl"><table><thead><tr><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody id="payouts"></tbody></table></div></div>
+   </div></div>
+   <div class="panel" id="p-settings"><div class="card" style="max-width:560px"><h3>Settings</h3><form id="f-settings"><label>Your name</label><input name="name" maxlength="80"/><label>Store / bot name</label><input name="storeName" maxlength="80"/><label>Payout UPI ID</label><input name="payoutUpi" placeholder="yourname@fam"/><label>Webhook URL (optional)</label><input name="webhookUrl" placeholder="https://yoursite.com/paid"/><button class="btn" style="margin-top:18px">Save</button></form><div class="msg" id="setMsg"></div><p style="margin-top:16px">Login email: <b id="uEmail"></b></p></div></div>
+  </div>
+ </div>
+</main>
+<footer><div class="wrap"><div>© <span id="yr"></span> <b data-brand>BETA BOT HUB</b> · Built by <b>THE SHIV</b></div><div class="row"><a href="https://t.me/betabot_support" target="_blank" rel="noopener">Group @betabot_support</a><a href="https://t.me/betabot_hub" target="_blank" rel="noopener">Channel @betabot_hub</a><a href="https://t.me/sukoon_s" target="_blank" rel="noopener">Owner @sukoon_s</a></div></div></footer><div class="toast" id="toast"></div>
+<script src="/common.js"></script><script src="/dashboard.js"></script></body></html>
